@@ -9,16 +9,15 @@ const getCountryData = function (country) {
 
 
 
-const request = XMLHttpRequest();
+const request = new XMLHttpRequest();
 request.open('GET', `https://restcountries.com/v2/name/${country}`);
 request.send(); // Sending our request;
 
 request.addEventListener('load', function() {
-    const [data] = JSON.parse(this.responseText);
+    const [data] = JSON.parse(this.responseText);//This is used to point to the event
     console.log(data);
-})
 
-const HTML = `
+    const html = `
 <article class="country">
           <img class="country__img" src="${data.flag}" />
           <div class="country__data">
@@ -33,6 +32,11 @@ const HTML = `
 `
 countriesContainer.insertAdjacentHTML('beforeend', html);
 countriesContainer.style.opacity = 1;
+})
 }
 
-getCountryData(portugal);
+
+
+getCountryData('usa');
+
+getCountryData('portugal');
